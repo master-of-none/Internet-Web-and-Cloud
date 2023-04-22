@@ -1,7 +1,3 @@
-from urllib import request
-from urllib import request
-from urllib import request
-from urllib import request
 from flask import redirect, request, url_for, render_template
 from flask.views import MethodView
 import gbmodel
