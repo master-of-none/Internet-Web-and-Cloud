@@ -5,7 +5,7 @@ import flask
 from flask.views import MethodView
 from index import Index
 from enter import Enter
-
+from view import View
 app = flask.Flask(__name__)
 
 app.add_url_rule('/',
