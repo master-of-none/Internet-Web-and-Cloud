@@ -2,14 +2,15 @@
 {% block content %}
 <h2>Building details </h2>
 
-<h3>Press to Enter Building details<a href="{{ url_for('enter') }}">here</a></h3>
+<h3>Press to Enter Building details<a href="{{ url_for('enter') }}"> here</a></h3>
 <h3>Entries</h3>
 {% for entry in entries %}
 <p class=entry>
-  {{ entry.bname }} &lt;{{ entry.bcode }}&gt;
-  <br>signed on {{ entry.bfloor }}<br>
-  {{ entry.closeRoomNumber }}
-  <br>{{entry.rating}}
+  <br>Building Name: {{ entry.bname }} <br>
+  <br>Building Code: {{ entry.bcode }} <br>
+  <br>Building Floor: {{ entry.bfloor }}<br>
+  <br>Closest Room Number: {{ entry.closeRoomNumber }}<br>
+  <br>Rating: {{entry.rating}}<br>
 </p>
 {% endfor %}
 
