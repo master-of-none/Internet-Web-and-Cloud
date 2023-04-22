@@ -6,9 +6,10 @@
 <h3>Entries</h3>
 {% for entry in entries %}
 <p class=entry>
-  {{ entry.name }} &lt;{{ entry.email }}&gt;
-  <br>signed on {{ entry.signed_on }}<br>
-  {{ entry.message }}
+  {{ entry.bname }} &lt;{{ entry.bcode }}&gt;
+  <br>signed on {{ entry.bfloor }}<br>
+  {{ entry.closeRoomNumber }}
+  <br>{{entry.rating}}
 </p>
 {% endfor %}
 
