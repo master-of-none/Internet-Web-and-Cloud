@@ -11,7 +11,9 @@ app = flask.Flask(__name__)
 app.add_url_rule('/',
                  view_func=Index.as_view('index'),
                  methods=["GET"])
-
+app.add_url_rule('/view',
+                 view_func=View.as_view('view'),
+                 methods=["GET"])
 
 app.add_url_rule('/enter',
                  view_func=Enter.as_view('enter'),
