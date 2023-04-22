@@ -14,7 +14,7 @@ app.add_url_rule('/',
 
 
 app.add_url_rule('/enter',
-                 view_func=Sign.as_view('sign'),
+                 view_func=Enter.as_view('enter'),
                  methods=["GET", "POST"])
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8000, debug=True)
