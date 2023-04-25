@@ -2,7 +2,7 @@
 FROM ubuntu:20.04
 
 # Specify your e-mail address as the maintainer of the container image
-LABEL maintainer="yourname@pdx.edu"
+LABEL maintainer="shbhat@pdx.edu"
 
 # Execute apt-get update and install to get Python's package manager
 #  installed (pip)
