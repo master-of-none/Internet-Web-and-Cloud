@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Welcome to the landing Page</h2>
+
+<h3> Press to View the details <a href="{{ url_for('view') }}"> View </a></h3>
+<h3>Press to Enter Building details<a href="{{ url_for('enter') }}"> Enter </a></h3>
+
+{% endblock %}
