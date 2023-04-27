@@ -4,8 +4,8 @@
 <form action="{{ url_for('enter') }}" method=post>
   <p class="heading">Name: <input type=text name=name></p>
   <p class="heading">Code: <input type=text name=code></p>
-  <p class="heading">Floor: <input type=text name=floor></p>
-  <p class="heading">Close Room Number: <input type=text name=closeRoomNumber></p>
+  <p class="heading">Floor: <input type=text name=floor pattern="[0-9]+"></p>
+  <p class="heading">Close Room Number: <input type=text name=closeRoomNumber pattern="[0-9]+"></p>
   <p class="heading">Rating: <input type=text name=rating></p>
   <p><input type=submit value=Enter></p>
 </form>
