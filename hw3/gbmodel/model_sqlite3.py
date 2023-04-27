@@ -3,12 +3,19 @@ Backend app for to store college building details
 
 """
 
+# importing the Model class and sqlite3
 from .Model import Model
 import sqlite3
+
+# database where we will store all the data
 DB_FILE = 'buildings.db'
 
 class model(Model):
     def __init__(self):
+        """
+        This function is used to initialise the database
+        :return: nothing
+        """
         connection = sqlite3.connect(DB_FILE)
         cursor = connection.cursor()
 

@@ -1,3 +1,8 @@
+/*
+This file contains basic styles given by professor.
+Did not change anything 
+*/
+
 body       { font-family: "Helvetica", sans-serif; font-size: 20px; color: #008303; }
 a, h1, h2  { color: #00008F; }
 form       { margin:.1em auto; padding:.1em; width: 400px; border: 1px }
