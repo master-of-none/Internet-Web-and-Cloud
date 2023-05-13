@@ -37,12 +37,12 @@ class model(Model):
         self.client = datastore.Client('cloud-shrikrishna-shbhat' )
 
     def select(self):
-        query = self.client.query(kind = 'Review')
+        query = self.client.query(kind = 'views')
         entities = list(map(from_datastore,query.fetch()))
         return entities
 
     def insert(self,bname,bcode,bfloor,closeRoomNumber,rating):
-        key = self.client.key('Review')
+        key = self.client.key('views')
         rev = datastore.Entity(key)
         rev.update( {
             'bname': bname,
