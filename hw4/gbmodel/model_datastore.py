@@ -30,13 +30,13 @@ def from_datastore(entity):
         return None
     if isinstance(entity, list):
         entity = entity.pop()
-    return [entity['name'],entity['email'],entity['date'],entity['message']]
+    return [entity['bname'],entity['bcode'],entity['bfloor'],entity['closeRoomNumber'],entity['rating']]
 
 class model(Model):
     def __init__(self):
         self.client = datastore.Client('cloud-shrikrishna-shbhat' )
 
-    def select(self):i
+    def select(self):
         query = self.client.query(kind = 'Review')
         entities = list(map(from_datastore,query.fetch()))
         return entities
@@ -45,10 +45,11 @@ class model(Model):
         key = self.client.key('Review')
         rev = datastore.Entity(key)
         rev.update( {
-            'name': name,
-            'email' : email,
-            'date' : datetime.today(),
-            'message' : message
+            'bname': bname,
+            'bcode' : bcode,
+            'bfloor' : bfloor,
+            'closeRoomNumber' : closeRoomNumber,
+            'rating' : rating
             })
         self.client.put(rev)
         return True
