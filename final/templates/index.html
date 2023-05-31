@@ -22,12 +22,17 @@
     <div class="recipe-item">
       <h3>{{ recipe.title }}</h3>
       <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+      <!-- <p>Nutrients:</p> -->
+      <!-- <ul> -->
+      <!--   {% for nutrient in recipe.nutrients %} -->
+      <!--   <li>{{ nutrient.title }}: {{ nutrient.amount }} {{ nutrient.unit }}</li> -->
+      <!--   {% endfor %} -->
+      <!-- </ul> -->
       <p>Nutrients:</p>
       <ul>
-        {% for nutrient in recipe.nutrients %}
-        <li>{{ nutrient.title }}: {{ nutrient.amount }} {{ nutrient.unit }}</li>
-        {% endfor %}
+        <li>{{ recipe.nutrients }}</li>
       </ul>
+
       <a href="{{ recipe.url }}" target="_blank">View Recipe</a>
     </div>
     {% endfor %}
