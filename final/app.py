@@ -6,13 +6,13 @@ app = Flask(__name__)
 # Initally passing the API keys here then will pass via environment variables
 
 # Edamam api key and id
-EDAMAM_API_ID = ""
-EDAMAM_API_KEY = ""
+EDAMAM_API_ID = "ec4e4386"
+EDAMAM_API_KEY = "ff18d36a899d9fe39b9e4be092e30e02"
 
 # Spoonacular API credentials
-SPOONACULAR_API_KEY = ""
+SPOONACULAR_API_KEY = "279e119500fd40b3bca3dd8e6a3ef7aa"
 
-# Function to search the recepies
+
 def search_recipes(ingredients):
     url = "https://api.edamam.com/api/recipes/v2"
     params = {
@@ -24,7 +24,8 @@ def search_recipes(ingredients):
     }
     response = requests.get(url, params=params)
     data = response.json()
-    return data["hits"]
+    #print(data)  # Print the API response
+    return data.get("hits")  # Use data.get() to handle missing 'hits' key gracefully
 
 # Get nutrition info
 def get_nutritional_info(recipe_url):
@@ -35,6 +36,7 @@ def get_nutritional_info(recipe_url):
     }
     response = requests.get(url, params=params)
     data = response.json()
+#    print(data)  # Print the nutritional_info dictionary
     return data
 
 @app.route("/", methods=["GET", "POST"])
@@ -52,7 +54,8 @@ def home():
                 "title": recipe["recipe"]["label"],
                 "image": recipe["recipe"]["image"],
                 "url": recipe_url,
-                "nutrients": nutritional_info["nutrition"]["nutrients"]
+                # "nutrients": nutritional_info["nutrients"]
+                "nutrients": nutritional_info["extendedIngredients"]
             })
 
         return render_template("index.html", recipes=recipe_info)
