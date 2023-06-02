@@ -1,18 +1,13 @@
 {
-  "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_58bbb0758f5d4bdcbabc204611e99b12",
+  "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_0008d2766474439cb33c45a2a211aa57",
   "calories": 0,
   "totalCO2Emissions": 0.0,
   "totalWeight": 0.0,
   "dietLabels": [],
   "healthLabels": [
-    "LOW_SUGAR",
     "VEGAN",
     "VEGETARIAN",
     "PESCATARIAN",
-    "PALEO",
-    "SPECIFIC_CARBS",
-    "MEDITERRANEAN",
-    "DASH",
     "DAIRY_FREE",
     "GLUTEN_FREE",
     "WHEAT_FREE",
@@ -33,8 +28,6 @@
     "MOLLUSK_FREE",
     "ALCOHOL_FREE",
     "NO_OIL_ADDED",
-    "NO_SUGAR_ADDED",
-    "SULPHITE_FREE",
     "FODMAP_FREE",
     "KOSHER"
   ],
@@ -43,7 +36,181 @@
   "totalDaily": {},
   "ingredients": [
     {
-      "text": "go to the home page"
+      "text": "sugar",
+      "parsed": [
+        {
+          "quantity": 0.0,
+          "foodMatch": "sugar",
+          "food": "sugar",
+          "foodId": "food_axi2ijobrk819yb0adceobnhm1c2",
+          "weight": 0.0,
+          "retainedWeight": 0.0,
+          "nutrients": {
+            "RIBF": {
+              "label": "Riboflavin",
+              "quantity": 0.0,
+              "unit": "mg"
+            },
+            "VITD": {
+              "label": "Vitamin D (D2 + D3), International Units",
+              "quantity": 0.0,
+              "unit": "IU"
+            },
+            "THIA": {
+              "label": "Thiamin",
+              "quantity": 0.0,
+              "unit": "mg"
+            },
+            "FAPU": {
+              "label": "Fatty acids, total polyunsaturated",
+              "quantity": 0.0,
+              "unit": "g"
+            },
+            "NIA": {
+              "label": "Niacin",
+              "quantity": 0.0,
+              "unit": "mg"
+            },
+            "ENERC_KCAL": {
+              "label": "Energy",
+              "quantity": 0.0,
+              "unit": "kcal"
+            },
+            "FASAT": {
+              "label": "Fatty acids, total saturated",
+              "quantity": 0.0,
+              "unit": "g"
+            },
+            "VITA_RAE": {
+              "label": "Vitamin A, RAE",
+              "quantity": 0.0,
+              "unit": "\u00b5g"
+            },
+            "VITC": {
+              "label": "Vitamin C, total ascorbic acid",
+              "quantity": 0.0,
+              "unit": "mg"
+            },
+            "PROCNT": {
+              "label": "Protein",
+              "quantity": 0.0,
+              "unit": "g"
+            },
+            "TOCPHA": {
+              "label": "Vitamin E (alpha-tocopherol)",
+              "quantity": 0.0,
+              "unit": "mg"
+            },
+            "CHOLE": {
+              "label": "Cholesterol",
+              "quantity": 0.0,
+              "unit": "mg"
+            },
+            "FAMS": {
+              "label": "Fatty acids, total monounsaturated",
+              "quantity": 0.0,
+              "unit": "g"
+            },
+            "CHOCDF": {
+              "label": "Carbohydrate, by difference",
+              "quantity": 0.0,
+              "unit": "g"
+            },
+            "FAT": {
+              "label": "Total lipid (fat)",
+              "quantity": 0.0,
+              "unit": "g"
+            },
+            "VITB6A": {
+              "label": "Vitamin B-6",
+              "quantity": 0.0,
+              "unit": "mg"
+            },
+            "VITB12": {
+              "label": "Vitamin B-12",
+              "quantity": 0.0,
+              "unit": "\u00b5g"
+            },
+            "SUGAR.added": {
+              "label": "Sugars, added",
+              "quantity": 0.0,
+              "unit": "g"
+            },
+            "FIBTG": {
+              "label": "Fiber, total dietary",
+              "quantity": 0.0,
+              "unit": "g"
+            },
+            "WATER": {
+              "label": "Water",
+              "quantity": 0.0,
+              "unit": "g"
+            },
+            "K": {
+              "label": "Potassium, K",
+              "quantity": 0.0,
+              "unit": "mg"
+            },
+            "P": {
+              "label": "Phosphorus, P",
+              "quantity": 0.0,
+              "unit": "mg"
+            },
+            "NA": {
+              "label": "Sodium, Na",
+              "quantity": 0.0,
+              "unit": "mg"
+            },
+            "ZN": {
+              "label": "Zinc, Zn",
+              "quantity": 0.0,
+              "unit": "mg"
+            },
+            "SUGAR": {
+              "label": "Sugars, total including NLEA",
+              "quantity": 0.0,
+              "unit": "g"
+            },
+            "CA": {
+              "label": "Calcium, Ca",
+              "quantity": 0.0,
+              "unit": "mg"
+            },
+            "MG": {
+              "label": "Magnesium, Mg",
+              "quantity": 0.0,
+              "unit": "mg"
+            },
+            "FE": {
+              "label": "Iron, Fe",
+              "quantity": 0.0,
+              "unit": "mg"
+            },
+            "VITK1": {
+              "label": "Vitamin K (phylloquinone)",
+              "quantity": 0.0,
+              "unit": "\u00b5g"
+            },
+            "FOLFD": {
+              "label": "Folate, food",
+              "quantity": 0.0,
+              "unit": "\u00b5g"
+            },
+            "FOLAC": {
+              "label": "Folic acid",
+              "quantity": 0.0,
+              "unit": "\u00b5g"
+            },
+            "FOLDFE": {
+              "label": "Folate, DFE",
+              "quantity": 0.0,
+              "unit": "\u00b5g"
+            }
+          },
+          "measureURI": "http://www.edamam.com/ontologies/edamam.owl#Measure_default",
+          "status": "MISSING_QUANTITY"
+        }
+      ]
     }
   ],
   "totalNutrientsKCal": {

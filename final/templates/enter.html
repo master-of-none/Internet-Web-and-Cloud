@@ -12,22 +12,29 @@
     <input type="text" name="ingredients" placeholder="Enter ingredients separated by commas">
     <input type="submit" value="Search">
   </form>
-  <div class="recipe-container">
-    {% for recipe in recipes %}
-    <div class="recipe-card">
-      <h3>{{ recipe.title }}</h3>
-      <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
-      <p>Nutrients:</p>
-      <ul>
-        {% for nutrient in recipe.nutrients %}
-        <!-- <li>{{ nutrient.original }}</li> -->
-        <li>{{ nutrient.name }}: {{ nutrient.amount }} {{ nutrient.unit }}</li>
-        {% endfor %}
-      </ul>
-      <a href="{{ recipe.url }}" target="_blank">View Recipe</a>
-    </div>
+  <h1>Recipe List</h1>
+  <ul>
+    {% for word in recipe_word %}
+    <li>{{ word }}</li>
     {% endfor %}
-  </div>
+  </ul>
+  <!-- <div class="recipe-container"> -->
+  <!--   {% for recipe in recipes %} -->
+  <!--   <div class="recipe-card"> -->
+  <!--     <h3>{{ recipe.title }}</h3> -->
+  <!--     <img src="{{ recipe.image }}" alt="{{ recipe.title }}"> -->
+  <!--     <p>Nutrients:</p> -->
+  <!--     <ul> -->
+  <!--       {% for nutrient in recipe.nutrients %} -->
+  <!--       <!-- <li>{{ nutrient.original }}</li> --> -->
+  <!--       <li>{{ nutrient.name }}: {{ nutrient.amount }} {{ nutrient.unit }}</li> -->
+  <!--       {% endfor %} -->
+  <!--     </ul> -->
+  <!--     <a href="{{ recipe.url }}" target="_blank">View Recipe</a> -->
+  <!--   </div> -->
+  <!--   {% endfor %} -->
+  <!-- </div> -->
+
 </body>
 
 </html>

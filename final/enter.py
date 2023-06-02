@@ -17,29 +17,34 @@ class Enter(MethodView):
         # EDAMAM_API_KEY = "ff18d36a899d9fe39b9e4be092e30e02"
 
     
-        EDAMAM_API_ID = os.environ.get('EDAMAM_API_ID')
-        EDAMAM_API_KEY = os.environ.get('EDAMAM_API_KEY')
-        
+        # EDAMAM_API_ID = os.environ.get('EDAMAM_API_ID')
+        # EDAMAM_API_KEY = os.environ.get('EDAMAM_API_KEY')
+        # 
         # Spoonacular API key
         SPOONACULAR_API_KEY = os.environ.get('SPOONACULAR_API_KEY')
 
-        # Function to analyze nutrients using Edamam API
-        def analyze_nutrients(ingredient):
-            url = "https://api.edamam.com/api/nutrition-data"
-            params = {
-                "app_id": EDAMAM_API_ID,
-                "app_key": EDAMAM_API_KEY,
-                "ingr": ingredient,
-                "to": 1
-            }
-            response = requests.get(url, params=params)
-            data = response.json()
+        # # Function to analyze nutrients using Edamam API
+        # def analyze_nutrients(ingredient):
+        #     url = "https://api.edamam.com/api/nutrition-data"
+        #     nutrients = []
+        #     for ingredient in ingredients:
+        #         params = {
+        #             "app_id": EDAMAM_API_ID,
+        #             "app_key": EDAMAM_API_KEY,
+        #             "ingr": ingredient,
+        #             "to": 2
+        #         }
+        #         response = requests.get(url, params=params)
+        #         data = response.json()
+        #         print("Response:", response)
+        #         print("Data:", data)
 
-            with open("data1.json", "w") as file:
-                json.dump(data, file)
+        #     #nutrients = data.get("totalNutrients", {})
+        #         nutrients.append(data.get("totalNutrients", {}))
 
-            nutrients = data.get("totalNutrients", {})
-            return nutrients
+        #     with open("nutrients.json", "w") as file:
+        #         json.dump(nutrients, file)
+        #     return nutrients
 
         
         def search_recipes(ingredients):
@@ -47,16 +52,19 @@ class Enter(MethodView):
             params = {
                 "apiKey": SPOONACULAR_API_KEY,
                 "ingredients": ingredients,
-                "number": 1
+                "number": 2
             }
             response = requests.get(url, params=params)
             data = response.json()
 
             with open("data.json", "w") as file:
                 json.dump(data, file)
-
-            original_lines = [ingredient["original"] for ingredient in data[0]["usedIngredients"] + data[0]["missedIngredients"]]
-            original_text = "\n".join(original_lines)
+            
+            original_text = ""
+            for recipe in data:
+                original_lines = [ingredient["original"] for ingredient in recipe["usedIngredients"] + recipe["missedIngredients"]]
+                original_text += "\n".join(original_lines) + "\n\n" 
+        
             return original_text
         # Your code goes here
         
@@ -65,9 +73,14 @@ class Enter(MethodView):
         # # Search recipes
         recipes = search_recipes(ingredients)
         # recipe_info = []
+        recipe_word = recipes.split("\n")
         print(recipes)
+
+        recipes_list = recipes.split("\n\n")
+
+        print(nutirents)
     
-        return render_template("enter.html")
+        return render_template("enter.html", recipe_word=recipe_word)
         
 
 
