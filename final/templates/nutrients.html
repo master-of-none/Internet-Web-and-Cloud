@@ -3,7 +3,7 @@
 
 <head>
   <title>Recipe Search</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='nutrients.css') }}">
 </head>
 
 <body>
@@ -13,14 +13,33 @@
     <input type="submit" value="Search">
   </form>
 
+  <!-- {% if recipes %} -->
+  <!-- <h2>Recipes:</h2> -->
+  <!-- <ul> -->
+  <!--   {% for nutrient, attributes in recipes.items() %} -->
+  <!--   <li> -->
+  <!--     <strong>{{ nutrient }}:</strong> -->
+  <!--     <ul> -->
+  <!--       {% for key, value in attributes.items() %} -->
+  <!--       <li> -->
+  <!--         <strong>{{ key }}:</strong> {{ value }} -->
+  <!--       </li> -->
+  <!--       {% endfor %} -->
+  <!--     </ul> -->
+  <!--   </li> -->
+  <!--   {% endfor %} -->
+  <!-- </ul> -->
+  <!-- {% endif %} -->
+
   {% if recipes %}
   <h2>Recipes:</h2>
   <ul>
     {% for nutrient, attributes in recipes.items() %}
+    {% set nutrient_label = attributes['label'] %}
     <li>
-      <strong>{{ nutrient }}:</strong>
+      <strong>{{ nutrient_label }}:</strong>
       <ul>
-        {% for key, value in attributes.items() %}
+        {% for key, value in attributes.items() if key != 'label' %}
         <li>
           <strong>{{ key }}:</strong> {{ value }}
         </li>
@@ -30,3 +49,4 @@
     {% endfor %}
   </ul>
   {% endif %}
+</body>
