@@ -6,7 +6,6 @@ This is used to display the index.html file
 from flask import render_template, request
 from flask.views import MethodView
 from flask import Flask
-import gbmodel
 app = Flask(__name__)
 
 class Index(MethodView):
