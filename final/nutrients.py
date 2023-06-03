@@ -15,10 +15,12 @@ class Nutrients(MethodView):
         # Edamam API keys
         # EDAMAM_API_ID = "ec4e4386"
         # EDAMAM_API_KEY = "ff18d36a899d9fe39b9e4be092e30e02"
+        EDAMAM_API_ID="012b51a7"
+        EDAMAM_API_KEY="fd4db16491f7dd7864d821e2b8645900"
 
     
-        EDAMAM_API_ID = os.environ.get('EDAMAM_API_ID')
-        EDAMAM_API_KEY = os.environ.get('EDAMAM_API_KEY')
+        # EDAMAM_API_ID = os.environ.get('EDAMAM_API_ID')
+        # EDAMAM_API_KEY = os.environ.get('EDAMAM_API_KEY')
         
         # Spoonacular API key
         SPOONACULAR_API_KEY = os.environ.get('SPOONACULAR_API_KEY')
