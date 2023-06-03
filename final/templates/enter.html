@@ -18,23 +18,32 @@
     <li>{{ word }}</li>
     {% endfor %}
   </ul>
-  <!-- <div class="recipe-container"> -->
-  <!--   {% for recipe in recipes %} -->
-  <!--   <div class="recipe-card"> -->
-  <!--     <h3>{{ recipe.title }}</h3> -->
-  <!--     <img src="{{ recipe.image }}" alt="{{ recipe.title }}"> -->
-  <!--     <p>Nutrients:</p> -->
-  <!--     <ul> -->
-  <!--       {% for nutrient in recipe.nutrients %} -->
-  <!--       <!-- <li>{{ nutrient.original }}</li> --> -->
-  <!--       <li>{{ nutrient.name }}: {{ nutrient.amount }} {{ nutrient.unit }}</li> -->
-  <!--       {% endfor %} -->
-  <!--     </ul> -->
-  <!--     <a href="{{ recipe.url }}" target="_blank">View Recipe</a> -->
-  <!--   </div> -->
-  <!--   {% endfor %} -->
-  <!-- </div> -->
-
+  <h1>Recipe</h1>
+  {% if recipe %}
+  <h2>{{ recipe.title }}</h2>
+  <a href="{{ recipe.sourceUrl }}">View Recipe</a>
+  <img src="{{ recipe.image }}" alt="Recipe Image">
+  <p>Missing Ingredients:</p>
+  <ul>
+    {% for ingredient in recipe.missedIngredients %}
+    <li>{{ ingredient.original }}</li>
+    {% endfor %}
+  </ul>
+  <p>Used Ingredients:</p>
+  <ul>
+    {% for ingredient in recipe.usedIngredients %}
+    <li>{{ ingredient.original }}</li>
+    {% endfor %}
+  </ul>
+  <p>Unused Ingredients:</p>
+  <ul>
+    {% for ingredient in recipe.unusedIngredients %}
+    <li>{{ ingredient.original }}</li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>No recipe found for the given ingredients.</p>
+  {% endif %}
 </body>
 
 </html>
