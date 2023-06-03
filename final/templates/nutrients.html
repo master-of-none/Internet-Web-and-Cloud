@@ -12,3 +12,21 @@
     <input type="text" name="ingredients" placeholder="Enter ingredients separated by commas">
     <input type="submit" value="Search">
   </form>
+
+  {% if recipes %}
+  <h2>Recipes:</h2>
+  <ul>
+    {% for nutrient, attributes in recipes.items() %}
+    <li>
+      <strong>{{ nutrient }}:</strong>
+      <ul>
+        {% for key, value in attributes.items() %}
+        <li>
+          <strong>{{ key }}:</strong> {{ value }}
+        </li>
+        {% endfor %}
+      </ul>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
