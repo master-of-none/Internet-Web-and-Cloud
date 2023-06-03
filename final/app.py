@@ -18,7 +18,11 @@ app.add_url_rule('/enter',
 app.add_url_rule('/nutrients',
                  view_func=Nutrients.as_view('nutrients'))
 # Run the program on specified port and on localhost
-if __name__ == "__main__":
-    app.run(debug=True)
+# if __name__ == "__main__":
+#     app.run(debug=True)
+
+# Run with default Flask port 5000
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', debug=True)
 
 
