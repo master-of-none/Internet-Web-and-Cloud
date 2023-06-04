@@ -48,6 +48,7 @@ class Enter(MethodView):
 
             if data:
                 random_recipe = random.choice(data)
+                #print(random_recipe)
                 return random_recipe
             else:
                 return None
@@ -58,13 +59,27 @@ class Enter(MethodView):
         
         # # Search recipes
         recipes = search_recipes(ingredients)
+        
+        if recipes is None:
+            error_message = "No recipe found"
+            return render_template("enter.html", error_message=error_message)
+
+        print(recipes['id'])
+        print(recipes['title'])
         # recipe_info = []
         #recipe_word = recipes.split("\n")
         #print(recipes)
 
-    
+        
         return render_template("enter.html", recipe=recipes)
         
 
-
+class Favorites(MethodView):
+    def post(self):
+        recipe_id = request.form.get("recipe_id")
+        recipe_title = request.form.get("recipe_title")
+        print(recipe_id)
+        print(recipe_title)
+        added_to_favorites = True
+        return render_template("enter.html",added_to_favorites=added_to_favorites)
 
