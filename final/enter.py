@@ -17,25 +17,6 @@ class Enter(MethodView):
         #SPOONACULAR_API_KEY = os.environ.get('SPOONACULAR_API_KEY')
         
         def search_recipes(ingredients):
-        #     url = "https://api.spoonacular.com/recipes/findByIngredients"
-        #     params = {
-        #         "apiKey": SPOONACULAR_API_KEY,
-        #         "ingredients": ingredients,
-        #         "number": 2
-        #     }
-        #     response = requests.get(url, params=params)
-        #     data = response.json()
-
-        #     with open("data.json", "w") as file:
-        #         json.dump(data, file)
-        #     
-        #     original_text = ""
-        #     for recipe in data:
-        #         original_lines = [ingredient["original"] for ingredient in recipe["usedIngredients"] + recipe["missedIngredients"]]
-        #         original_text += "\n".join(original_lines) + "\n\n" 
-        # 
-        #     return original_text
-        # Your code goes her
             SPOONACULAR_API_KEY = os.environ.get('SPOONACULAR_API_KEY')
             api_key = SPOONACULAR_API_KEY
             #url = f'https://api.spoonacular.com/recipes/findByIngredients?ingredients={ingredients}&apiKey={api_key}'
@@ -52,8 +33,6 @@ class Enter(MethodView):
                 return random_recipe
             else:
                 return None
-            # recipes = data[0]
-            # return recipes
 
         ingredients = request.form.get("ingredients").split(",")
         
@@ -66,9 +45,6 @@ class Enter(MethodView):
 
         print(recipes['id'])
         print(recipes['title'])
-        # recipe_info = []
-        #recipe_word = recipes.split("\n")
-        #print(recipes)
 
         
         return render_template("enter.html", recipe=recipes)
