@@ -10,7 +10,7 @@ class Model():
         """
         pass
 
-    def insert(self, bName, bCode, bFloor, closeRoomNumber, rating):
+    def insert(self, id, title):
         """
         Insert all the values into the building database.
         :param bName: String

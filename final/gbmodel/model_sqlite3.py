@@ -9,7 +9,7 @@ from .Model import Model
 import sqlite3
 
 # database where we will store all the data
-DB_FILE = 'buildings.db'
+DB_FILE = 'recipes.db'
 
 class model(Model):
     def __init__(self):
@@ -21,10 +21,10 @@ class model(Model):
         cursor = connection.cursor()
 
         try:
-            cursor.execute("select count(rowid) from building")
+            cursor.execute("select count(rowid) from recipe")
         
         except sqlite3.OperationalError:
-            cursor.execute("create table building (bname text, bcode text, bfloor integer, closeRoomNumber integer, rating real )")
+            cursor.execute("create table recipe (id integer, title text)")
 
         cursor.close()
 
@@ -37,10 +37,10 @@ class model(Model):
 
         connection = sqlite3.connect(DB_FILE)
         cursor = connection.cursor()
-        cursor.execute("SELECT * FROM building")
+        cursor.execute("SELECT * FROM recipe")
         return cursor.fetchall()
 
-    def insert(self, bname, bcode, bfloor, closeRoomNumber, rating):
+    def insert(self, id, title):
         """
         Inserts entries to database
         :param bname: String
@@ -52,10 +52,10 @@ class model(Model):
         :raises: Database error on connection and insertion
         """
 
-        params = {'bname':bname, 'bcode':bcode, 'bfloor':bfloor, 'closeRoomNumber':closeRoomNumber, 'rating':rating}
+        params = {'id':id, 'title':title} 
         connection = sqlite3.connect(DB_FILE)
         cursor = connection.cursor()
-        cursor.execute("insert into building (bname, bcode, bfloor, closeRoomNumber, rating) VALUES(:bname, :bcode, :bfloor, :closeRoomNumber, :rating)", params)
+        cursor.execute("insert into recipe (id, title) VALUES(:id, :title)", params)
         connection.commit()
         cursor.close()
         return True
