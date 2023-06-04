@@ -28,6 +28,7 @@ class Nutrients(MethodView):
         # Function to analyze nutrients using Edamam API
         def analyze_nutrients(ingredients):
             url = "https://api.edamam.com/api/nutrition-data"
+            results = []
             for ingredient in ingredients:
                 params = {
                     "app_id": EDAMAM_API_ID,
@@ -38,9 +39,9 @@ class Nutrients(MethodView):
                 }
                 response = requests.get(url, params=params)
                 data = response.json()
-
-                with open("data1.json", "a") as file:
-                    json.dump(data, file)
+                results.append(data)
+                with open("data1.json", "w") as file:
+                    json.dump(results, file)
             
             total_nutrients = data['totalNutrientsKCal']
             return total_nutrients
