@@ -4,6 +4,11 @@
 <head>
   <title>Recipe Search</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script>
+    function showAlert() {
+      alert("Recipe has been added to favorites!");
+    }
+  </script>
 </head>
 
 <body>
@@ -12,14 +17,17 @@
     <input type="text" name="ingredients" placeholder="Enter ingredients separated by commas">
     <input type="submit" value="Search">
   </form>
+  {% if error_message %}
+  <p>{{ error_message }}</p>
+  {% endif %}
   <h1>Recipe List</h1>
   <ul>
     {% for word in recipe_word %}
     <li>{{ word }}</li>
     {% endfor %}
   </ul>
-  <h1>Recipe</h1>
   {% if recipe %}
+  <h1> Recipe is as below </h1>
   <h2>{{ recipe.title }}</h2>
   <a href="{{ recipe.sourceUrl }}">View Recipe</a>
   <img src="{{ recipe.image }}" alt="Recipe Image">
@@ -41,8 +49,17 @@
     <li>{{ ingredient.original }}</li>
     {% endfor %}
   </ul>
+  {% if added_to_favorites %}
+  <p>Recipe has been added to favorites!</p>
   {% else %}
-  <p>No recipe found for the given ingredients.</p>
+  <form action="/favorites" method="POST" onsubmit="showAlert()">
+    <input type="hidden" name="recipe_id" value="{{ recipe.id }}">
+    <input type="hidden" name="recipe_title" value="{{ recipe.title }}">
+    <button type="submit">Add to Favorites</button>
+  </form>
+  {% endif %}
+  {% else %}
+  <p>Must enter ingridents to display recipe</p>
   {% endif %}
 </body>
 
