@@ -5,6 +5,7 @@ from flask import Flask
 import json
 import os
 import random
+import gbmodel
 
 app = Flask(__name__)
 
@@ -56,6 +57,12 @@ class Favorites(MethodView):
         recipe_title = request.form.get("recipe_title")
         print(recipe_id)
         print(recipe_title)
+        
+        id = recipe_id
+        title = recipe_title
+
+        model = gbmodel.get_model()
+        model.insert(id, title)
         added_to_favorites = True
         return render_template("enter.html",added_to_favorites=added_to_favorites)
 
