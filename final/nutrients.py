@@ -12,22 +12,15 @@ class Nutrients(MethodView):
         return render_template('nutrients.html')
 
     def post(self):
-        # Edamam API keys
-        # EDAMAM_API_ID = "ec4e4386"
-        # EDAMAM_API_KEY = "ff18d36a899d9fe39b9e4be092e30e02"
-        EDAMAM_API_ID="012b51a7"
-        EDAMAM_API_KEY="fd4db16491f7dd7864d821e2b8645900"
-
     
-        # EDAMAM_API_ID = os.environ.get('EDAMAM_API_ID')
-        # EDAMAM_API_KEY = os.environ.get('EDAMAM_API_KEY')
+        EDAMAM_API_ID = os.environ.get('EDAMAM_API_ID')
+        EDAMAM_API_KEY = os.environ.get('EDAMAM_API_KEY')
         
-        # Spoonacular API key
-        SPOONACULAR_API_KEY = os.environ.get('SPOONACULAR_API_KEY')
 
         # Function to analyze nutrients using Edamam API
         def analyze_nutrients(ingredients):
             url = "https://api.edamam.com/api/nutrition-data"
+            results = []
             for ingredient in ingredients:
                 params = {
                     "app_id": EDAMAM_API_ID,
@@ -38,18 +31,69 @@ class Nutrients(MethodView):
                 }
                 response = requests.get(url, params=params)
                 data = response.json()
-
-                with open("data1.json", "a") as file:
-                    json.dump(data, file)
+                results.append(data)
+                with open("data1.json", "w") as file:
+                    json.dump(results, file)
             
-            total_nutrients = data['totalNutrientsKCal']
-            return total_nutrients
+            # total_nutrients = data['totalNutrientsKCal']
+            # return total_nutrients
+            return results
+
+        def print_values(data):
+            output = []
+            total_energy = 0
+            total_protein_calories = 0
+            total_fat_calories = 0
+            total_carb_calories = 0
+
+            # Accessing totalNutrientsKCal and its contents
+            for nutrient_data in data:
+                if 'totalNutrientsKCal' in nutrient_data:
+                    total_nutrients = nutrient_data['totalNutrientsKCal']
+
+                    # Accessing individual nutrient information
+                    for nutrient_name, nutrient_info in total_nutrients.items():
+                        label = nutrient_info['label']
+                        quantity = nutrient_info['quantity']
+                        unit = nutrient_info['unit']
+
+                        output.append({
+                            'nutrient': nutrient_name,
+                            'label': label,
+                            'quantity': f"{quantity} {unit}"
+                        })
+
+                        # Calculate sum for ENERC_KCAL (Energy)
+                        if nutrient_name == 'ENERC_KCAL':
+                            total_energy += quantity
+
+                        # Calculate sum for PROCNT_KCAL (Calories from protein)
+                        if nutrient_name == 'PROCNT_KCAL':
+                            total_protein_calories += quantity
+
+                        # Calculate sum for FAT_KCAL (Calories from fat)
+                        if nutrient_name == 'FAT_KCAL':
+                            total_fat_calories += quantity
+
+                        # Calculate sum for CHOCDF_KCAL (Calories from carbohydrates)
+                        if nutrient_name == 'CHOCDF_KCAL':
+                            total_carb_calories += quantity
+
+            return output, total_energy, total_protein_calories, total_fat_calories, total_carb_calories
 
         ingredients = request.form.get("ingredients").split(",")
+
         
-        # # Search recipes
+        # Search recipes
         recipes = analyze_nutrients(ingredients)
-        print(recipes)
+        if recipes is None:
+            error_message = "Nutritional value not found"
+            return render_template("nutrients.html", error_message=error_message)
 
-        return render_template("nutrients.html",recipes=recipes)
+        output, total_energy, total_protein_calories, total_fat_calories, total_carb_calories = print_values(recipes)
 
+        return render_template("nutrients.html", output=output, total_energy=total_energy,
+                               total_protein_calories=total_protein_calories,
+                               total_fat_calories=total_fat_calories,
+                               total_carb_calories=total_carb_calories)  
+        

@@ -4,6 +4,7 @@ from index import Index
 from enter import Enter
 from nutrients import Nutrients
 from enter import Favorites
+from view import View
 
 app = flask.Flask(__name__)
 
@@ -22,6 +23,11 @@ app.add_url_rule('/nutrients',
 app.add_url_rule('/favorites',
                  view_func=Favorites.as_view('favorites'),
                  methods=["POST"])
+
+app.add_url_rule('/view',
+                 view_func=View.as_view('view'),
+                 methods=["GET"])
+
 # Run the program on specified port and on localhost
 # if __name__ == "__main__":
 #     app.run(debug=True)

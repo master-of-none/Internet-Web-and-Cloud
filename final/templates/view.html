@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title></title>
+</head>
+
+<body>
+  {% block content %}
+  <h2>Recipe Favorites </h2>
+  {% for entry in entries %}
+  <p class=entry>
+    <br>Id: {{ entry.id }} <br>
+    <br>Title: {{ entry.title }} <br>
+  </p>
+  {% endfor %}
+
+  <a href="{{url_for('index')}}"> Home Page</a>
+  {% endblock %}
+</body>
+
+</html>
