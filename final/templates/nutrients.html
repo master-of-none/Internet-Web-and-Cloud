@@ -12,43 +12,32 @@
     <input type="text" name="ingredients" placeholder="Enter ingredients separated by commas">
     <input type="submit" value="Search">
   </form>
+  {% if error_message %}
+  <p>{{ error_message }}</p>
+  {% endif %}
 
-  <!-- {% if recipes %} -->
-  <!-- <h2>Recipes:</h2> -->
-  <!-- <ul> -->
-  <!--   {% for nutrient, attributes in recipes.items() %} -->
-  <!--   <li> -->
-  <!--     <strong>{{ nutrient }}:</strong> -->
-  <!--     <ul> -->
-  <!--       {% for key, value in attributes.items() %} -->
-  <!--       <li> -->
-  <!--         <strong>{{ key }}:</strong> {{ value }} -->
-  <!--       </li> -->
-  <!--       {% endfor %} -->
-  <!--     </ul> -->
-  <!--   </li> -->
-  <!--   {% endfor %} -->
-  <!-- </ul> -->
-  <!-- {% endif %} -->
-
-  {% if recipes %}
+  {% if output %}
   <h2>Nutrients are as below</h2>
   <ul>
-    {% for nutrient, attributes in recipes.items() %}
-    {% set nutrient_label = attributes['label'] %}
+    {% for nutrient_data in output %}
     <li>
-      <strong>{{ nutrient_label }}:</strong>
-      <ul>
-        {% for key, value in attributes.items() if key != 'label' %}
-        <li>
-          <strong>{{ key }}:</strong> {{ value }}
-        </li>
-        {% endfor %}
-      </ul>
+      <strong>Nutrient: {{ nutrient_data.nutrient }}</strong><br>
+      Label: {{ nutrient_data.label }}<br>
+      Quantity: {{ nutrient_data.quantity }}
     </li>
     {% endfor %}
   </ul>
-  {% endif %}
-  <a href="{{url_for('index')}}"> Home Page</a>
 
+  <h3>Total Energy: {{ total_energy }}</h3>
+  <h3>Total Calories from Protein: {{ total_protein_calories }}</h3>
+  <h3>Total Calories from Fat: {{ total_fat_calories }}</h3>
+  <h3>Total Calories from Carbohydrates: {{ total_carb_calories }}</h3>
+
+  {% else %}
+  <p>No ingredients provided.</p>
+  {% endif %}
+
+  <a href="{{url_for('index')}}"> Home Page</a>
 </body>
+
+</html>
