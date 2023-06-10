@@ -43,12 +43,23 @@ class Enter(MethodView):
         if recipes is None:
             error_message = "No recipe found"
             return render_template("enter.html", error_message=error_message)
+        
+        equip_id = recipes['id']
 
         print(recipes['id'])
         print(recipes['title'])
-
+        SPOONACULAR_API_KEY = os.environ.get('SPOONACULAR_API_KEY')
+        api_key = SPOONACULAR_API_KEY
+  
+        image_url = f"https://api.spoonacular.com/recipes/{equip_id}/equipmentWidget.png?apiKey={api_key}"
+        response = requests.get(image_url)
+        if response.status_code == 200:
+            with open('image.png', 'wb') as file:
+                file.write(response.content)
+        else:
+            print("image error")
         
-        return render_template("enter.html", recipe=recipes)
+        return render_template("enter.html", recipe=recipes,image_url=image_url)
         
 
 class Favorites(MethodView):
