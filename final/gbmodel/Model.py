@@ -4,20 +4,16 @@ class Model():
         """
         This is used to extract all the entries from database.
 
-        This will return the entries from buildingDB
-        Each row will have: Building Name, Building Code, Building Floor, Closest Room Number, Rating
-        return: List, listing all the rows of the database.
+        This will return the entries from Recipe Database
+        As of now we are returning the id and recipe title on the screen
         """
         pass
 
     def insert(self, id, title):
         """
         Insert all the values into the building database.
-        :param bName: String
-        :param bCode: String
-        :param bFloor: Int
-        :param closeRoomNumber: Int
-        :param rating: Float
+        :param id: int
+        :param title: String
         """
         pass
 

@@ -1,3 +1,9 @@
+"""
+This file contains the database we are going to use
+We can comment out the code regarding which database we do not want to use, and we can use the right database.
+
+"""
+
 model_backend = 'sqlite3'
 #model_backend = 'datastore'
 

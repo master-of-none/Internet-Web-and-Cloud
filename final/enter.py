@@ -1,3 +1,7 @@
+"""
+This file contains the the api which gives the recipe based on ingredients.
+"""
+
 from flask import redirect, request, url_for, render_template, Flask
 from flask.views import MethodView
 import requests
@@ -9,22 +13,27 @@ import gbmodel
 
 app = Flask(__name__)
 
+"""
+This class is used to Enter the ingridients and and get it from the form.
+"""
 class Enter(MethodView):
     def get(self):
         return render_template('enter.html')
 
     def post(self):
-        # Spoonacular API key
-        #SPOONACULAR_API_KEY = os.environ.get('SPOONACULAR_API_KEY')
         
         def search_recipes(ingredients):
+           
+            # Take the spoonacular API Key
             SPOONACULAR_API_KEY = os.environ.get('SPOONACULAR_API_KEY')
             api_key = SPOONACULAR_API_KEY
-            #url = f'https://api.spoonacular.com/recipes/findByIngredients?ingredients={ingredients}&apiKey={api_key}'
-            #url = f'https://api.spoonacular.com/recipes/findByIngredients?ingredients={ingredients}&apiKey={api_key}&number=2&random=true'
+            
+            # Acces the API URL and get the random recipe, we can change the number as desired, currently we are setting it to 20
             url = f'https://api.spoonacular.com/recipes/findByIngredients?ingredients={ingredients}&apiKey={api_key}&number=20'
             response = requests.get(url)
             data = json.loads(response.text)
+            
+            # This is used to test the json data which is returned
             with open("data.json", "w") as file:
                 json.dump(data, file)
 
@@ -34,10 +43,11 @@ class Enter(MethodView):
                 return random_recipe
             else:
                 return None
-
+        
+        # Get the ingredients from html file
         ingredients = request.form.get("ingredients").split(",")
         
-        # # Search recipes
+        # Search recipes
         recipes = search_recipes(ingredients)
         
         if recipes is None:
@@ -51,17 +61,22 @@ class Enter(MethodView):
         SPOONACULAR_API_KEY = os.environ.get('SPOONACULAR_API_KEY')
         api_key = SPOONACULAR_API_KEY
   
+        # Another API endpoint to display the equpment required to prepare the recipe
         image_url = f"https://api.spoonacular.com/recipes/{equip_id}/equipmentWidget.png?apiKey={api_key}"
-        # response = requests.get(image_url)
-        # if response.status_code == 200:
-        #     with open('image.png', 'wb') as file:
-        #         file.write(response.content)
-        # else:
-        #     print("image error")
+        
+        # This was primarily used for testing purposes
+        response = requests.get(image_url)
+        if response.status_code == 200:
+            with open('image.png', 'wb') as file:
+                file.write(response.content)
+        else:
+            print("image error")
         
         return render_template("enter.html", recipe=recipes,image_url=image_url)
         
-
+"""
+This class is used add the recipe to Favorites
+"""
 class Favorites(MethodView):
     def post(self):
         recipe_id = request.form.get("recipe_id")

@@ -1,3 +1,7 @@
+"""
+This was just a test file to cacluate the total nutrients without disturbing the main code
+Could have used git branch but did the OG way
+"""
 import json
 
 # Assuming the JSON data is stored in a file called "data.json"

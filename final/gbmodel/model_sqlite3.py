@@ -1,6 +1,6 @@
 
 """
-Backend app for to store college building details
+Backend app for to store recipe details
 
 """
 
@@ -31,8 +31,8 @@ class model(Model):
     def select(self):
         """
         This is used to get all the rows from the database
-        Each row will have: Building name, Building code, building floor, Closest Room Number and rating.
-        :return: List of lists containing all rows of database
+        Each row will have: id of the recipe and title of the recipe.
+        :return: List of lists containing all rows of database.
         """
 
         connection = sqlite3.connect(DB_FILE)
@@ -43,12 +43,8 @@ class model(Model):
     def insert(self, id, title):
         """
         Inserts entries to database
-        :param bname: String
-        :param bcode: String
-        :param bfloor: Int
-        :param closeRoomNumber: Int
-        :param rating: Float
-        :return: True
+        :param id: int
+        :param recipe: String
         :raises: Database error on connection and insertion
         """
 

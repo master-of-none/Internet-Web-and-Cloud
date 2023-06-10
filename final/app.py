@@ -1,3 +1,7 @@
+"""
+This contains all the routes which are needed for the application.
+"""
+
 import flask
 from flask.views import MethodView
 from index import Index
@@ -27,10 +31,6 @@ app.add_url_rule('/favorites',
 app.add_url_rule('/view',
                  view_func=View.as_view('view'),
                  methods=["GET"])
-
-# Run the program on specified port and on localhost
-# if __name__ == "__main__":
-#     app.run(debug=True)
 
 # Run with default Flask port 5000
 if __name__ == '__main__':

@@ -1,3 +1,7 @@
+"""
+This file is used for another API which will display the nutrition when we give the ingredients and it will calculate the total energy count.
+"""
+
 from flask import redirect, request, url_for, render_template, Flask
 from flask.views import MethodView
 import requests
@@ -7,6 +11,9 @@ import os
 
 app = Flask(__name__)
 
+"""
+This is the nutrient class which contains the nutrients API.
+"""
 class Nutrients(MethodView):
     def get(self):
         return render_template('nutrients.html')
@@ -35,8 +42,6 @@ class Nutrients(MethodView):
                 with open("data1.json", "w") as file:
                     json.dump(results, file)
             
-            # total_nutrients = data['totalNutrientsKCal']
-            # return total_nutrients
             return results
 
         def print_values(data):
@@ -84,7 +89,7 @@ class Nutrients(MethodView):
         ingredients = request.form.get("ingredients").split(",")
 
         
-        # Search recipes
+        # Analyze the nutrients
         recipes = analyze_nutrients(ingredients)
         if recipes is None:
             error_message = "Nutritional value not found"
