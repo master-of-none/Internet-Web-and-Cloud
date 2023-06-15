@@ -29,7 +29,7 @@ class Enter(MethodView):
             api_key = SPOONACULAR_API_KEY
             
             # Acces the API URL and get the random recipe, we can change the number as desired, currently we are setting it to 20
-            url = f'https://api.spoonacular.com/recipes/findByIngredients?ingredients={ingredients}&apiKey={api_key}&number=20'
+            url = f'https://api.spoonacular.com/recipes/findByIngredients?ingredients={ingredients}&apiKey={api_key}&number=3'
             response = requests.get(url)
             data = json.loads(response.text)
             
@@ -71,6 +71,8 @@ class Enter(MethodView):
                 file.write(response.content)
         else:
             print("image error")
+            return render_template("enter.html", recipe=recipes)
+            
         
         return render_template("enter.html", recipe=recipes,image_url=image_url)
         
